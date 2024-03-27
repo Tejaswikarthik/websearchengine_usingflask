@@ -1,0 +1,74 @@
+<html>
+    <head>
+        <style>
+            nav {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 16px;
+                background-color: #fff;
+                position:relative;
+                top: 0;
+                left: 0;
+                width: 100%;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+    
+            nav a {
+                margin-right: 16px;
+            }
+
+            form{
+                justify-content: center;
+            }
+            .site {
+                    font-size: .8rem;
+                    color: green;
+                }
+                
+                .snippet {
+                    font-size: .9rem;
+                    color: gray;
+                    margin-bottom: 30px;
+                }
+                
+                .rel-button {
+                    cursor: pointer;
+                    color: blue;
+                }
+                </style>
+                <script>
+                const relevant = function(query, link){
+                fetch("/relevant", {
+                    method: 'POST',
+                    headers: {
+                      'Accept': 'application/json',
+                      'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                       "query": query,
+                       "link": link
+                      })
+                    });
+                }
+                </script>
+    </head>
+    
+    <body>
+        <nav>
+        <div>
+            <a href = "/search"><h1 color:"blue">OMNISCIENT</h1></a>
+        </div>
+        <div>
+            <a href="/register" class="btn btn-primary">register</a>
+            <a href="/login" class = "btn btn-primary">login</a>
+        </div>
+    </nav>
+        <div>
+            <form action="/search" method="post">
+                <input type="text" name="query">
+                <input type="submit" value="Search">
+              </form> 
+        </div>
+    </body>
+</html>

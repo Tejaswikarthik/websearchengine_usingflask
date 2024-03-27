@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details</title>
+    <style>
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            background-color: #fff;
+            position: relative;
+            top: 0;
+            left: 0;
+            width: 100%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            margin-right: 16px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        #add-new-btn {
+            float: right;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div>
+            <a href = "/search"><h1 color:"blue">OMNISCIENT</h1></a>
+        </div>
+        <div>
+            <a href="/dropsession">logout</a>
+            <a href="/history">history</a>
+            <a href="/users">users</a>
+            <a href="/changepassword">changepwd</a>
+            <a href="/dashboard">dashboard</a>
+        </div>
+    </nav>
+    <h1>User Details</h1>
+    <button id="add-new-btn" onclick="openRegistrationForm()">Add New</button>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user[0] }}</td>
+                <td>{{ user[1] }}</td>
+                <td><button onclick="deleteUser('{{ user[1] }}')">Delete</button></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        function openRegistrationForm() {
+            // Redirect to the registration form page
+            window.location.href = "/register";
+        }
+
+        function deleteUser(email) {
+            if (confirm("Are you sure you want to delete this user?")) {
+                // Send a request to the server to delete the user
+                fetch("/delete_user", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ email: email })
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // Reload the page after successful deletion
+                        window.location.reload();
+                    } else {
+                        // Handle error response
+                        console.error("Failed to delete user");
+                    }
+                })
+                .catch(error => {
+                    console.error("Error deleting user:", error);
+                });
+            }
+        }
+    </script>
+    
+</body>
+</html>

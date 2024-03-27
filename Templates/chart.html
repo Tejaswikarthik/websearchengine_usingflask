@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="
+    https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js
+"></script>
+    <title>History</title>
+    <style>
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            background-color: #fff;
+            position: relative;
+            top: 0;
+            left: 0;
+            width: 100%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            margin-right: 16px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div>
+            <a href = "/search"><h1 color:"blue">OMNISCIENT</h1></a>
+        </div>
+        <div>
+            <a href="/dropsession">logout</a>
+            <a href="/history">history</a>
+            <a href="/users">users</a>
+            <a href="/changepassword">changepwd</a>
+            <a href="/dashboard">dashboard</a>
+        </div>
+    </nav>
+    <h1>Queries dashboard</h1>
+    <div  style="display: flex ; align-items: center ; justify-content:center;">
+        <img src="data:image/png;base64,{{ chart_data }}" alt="Pie Chart">
+    </div>
+</body>
+</html>

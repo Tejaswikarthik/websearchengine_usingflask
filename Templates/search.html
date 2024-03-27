@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 24px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .container h1 {
+            font-size: 48px;
+            margin-bottom: 32px;
+        }
+
+        form {
+            position: relative;
+        }
+
+        #search {
+            width: 80%;
+            padding: 8px 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        button {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: none;
+            border: none;
+            padding: 12px 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ddd;
+        }
+
+        button img {
+            width: 24px;
+            height: 24px;
+        }
+
+        form img {
+            width: 100px;
+            height: auto;
+            margin-right: 16px;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            background-color: #fff;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+
+        nav a {
+            margin-right: 16px;
+            text-decoration: none;
+            color: #000;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: blue;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 16px;
+            }
+
+            .container h1 {
+                font-size: 32px;
+                margin-bottom: 16px;
+            }
+
+            form {
+                margin-bottom: 16px;
+            }
+
+            #search {
+                padding: 8px 12px;
+                font-size: 14px;
+            }
+
+            button {
+                padding: 8px 12px;
+            }
+
+            form img {
+                margin-right: 8px;
+            }
+
+            nav {
+                padding: 8px;
+            }
+
+            nav a {
+                margin-right: 8px;
+            }
+        }
+    </style>
+    <script>
+        const relevant = function(query, link){
+            fetch("/relevant", {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "query": query,
+                    "link": link
+                })
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="background">
+       
+        <nav>
+            <div>
+                <a href = "/search"><h1 color:"blue">OMNISCIENT</h1></a>
+            </div>
+            <div>
+                <a href="/register" class="btn btn-primary">register</a>
+                <a href="/login" class = "btn btn-primary">login</a>
+            </div>
+        </nav>
+        <div class="container">
+           
+            <form id = "search-form" action="/" method="post">
+                
+                <input type="text" id="search" name="query" placeholder="Type your query...">
+               
+                <button type="submit" value="Search">Search</button>
+                
+                
+            </form>
+        </div>
+    </div>
+</body>
+</html>

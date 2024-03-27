@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech Recognition Test</title>
+</head>
+<body>
+    <h1>Speech Recognition Test</h1>
+
+    <button id="start-recognition">Start Recognition</button>
+    <p id="output"></p>
+
+    <script>
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        const recognition = new SpeechRecognition();
+        recognition.lang = 'en-US';
+
+        const startRecognitionBtn = document.getElementById('start-recognition');
+        const output = document.getElementById('output');
+
+        startRecognitionBtn.addEventListener('click', () => {
+            recognition.start();
+        });
+
+        recognition.onresult = (event) => {
+            const result = event.results[event.results.length - 1][0].transcript;
+            print(result)
+            output.textContent = result;
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <style>
+            nav {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 16px;
+                background-color: #fff;
+                position: relative;
+                top: 0;
+                left: 0;
+                width: 100%;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+            nav a {
+                margin-right: 16px;
+            }
+        </style>
+    </head>
+    <body>
+        <nav>
+            <div>
+                <a href = "/search"><h1 color:"blue">OMNISCIENT</h1></a>
+            </div>
+            <div>
+                <a href="/register" class="btn btn-primary">register</a>
+                <a href="/login" class = "btn btn-primary">login</a>
+            </div>
+        </nav>
+        <p>
+            Hello {{user}} your session is dropped!!!!
+        </p>
+    </body>
+</html>
