@@ -169,19 +169,13 @@ def login():
                 'email': data[2],
                 'is_admin': bool(data[4])
             }
-            return redirect(url_for('welcome'))
+            user = session.get('user')
+            if user['is_admin']:
+                return render_template('admin_view.html')
+            return render_template('Search_user.html')
         else:
             return render_template('invalid.html')
     return render_template('login.html')
-
-@app.route('/welcome',methods=['GET','POST'])
-
-def welcome():
-    if g.user:
-        user = session.get('user')
-        print(user)
-        return render_template('welcome.html',user = user['name'])
-    return redirect(url_for('login'))
 
 @app.before_request
 def before_request():
@@ -291,9 +285,9 @@ def delete_user():
         return "User deleted successfully", 200
     else:
         return "Invalid request", 400
-
-
-
+  
 @app.route('/dashboard_user',methods=['GET','POST'])  
 def dashboard_user():
-    pass   
+    user = session.get('user')
+    name = user['name']
+    return render_template('welcome.html',user = user['name']) 
