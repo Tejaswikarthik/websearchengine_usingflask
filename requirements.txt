@@ -2,4 +2,4 @@ flask
 pandas
 requests
 beautifulsoup4
-werkzeug.security
+
